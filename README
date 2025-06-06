@@ -8,6 +8,8 @@ main.css and main.js edits as well as changes to the aesthetics and feel of the 
 adding a splash screen and completely reworking the gallery. I will walk through the changes made, working from the most basic to the most 
 complicated.
 
+---
+
 ## Features
 
 - **Basic Text Editing
@@ -19,7 +21,7 @@ complicated.
 
 ---
 
-#BASIC CHANGES 
+#TAB TEXT EDIT
 
 The first, simplest changes that I made to the website were to the overall aesthetics. The background images used on each page, the text 
 included in the various artist profile sections, the tab text were all very easy to edit in the index.html file within the following code blocks:
@@ -40,7 +42,7 @@ included in the various artist profile sections, the tab text were all very easy
 
 ---
 
-## INTRO SCREEN TEXT
+## INTRO SCREEN TEXT EDIT
 
 - Again, just very simple text editing from the placeholder text in index.html
 
