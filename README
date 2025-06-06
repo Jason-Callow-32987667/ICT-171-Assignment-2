@@ -4,15 +4,21 @@ Assignment: Assignment 2
 Website URL: https://jason-murdoch.online/
 
 My website has been built using a template, Big picture by HTML5up. This frame work has been greatly expanded upon using various index.html, 
-main.css and main.js edits as well as changes to the aesthetics and feel of the website. The changes are as follows:
+main.css and main.js edits as well as changes to the aesthetics and feel of the website. I also made much more complicated edits, such as 
+adding a splash screen and completely reworking the gallery. I will walk through the changes made, working from the most basic to the most 
+complicated.
 
 #BASIC CHANGES 
 
 The first, simplest changes that I made to the website were to the overall aesthetics. The background images used on each page, the text 
 included in the various artist profile sections, the tab text were all very easy to edit in the index.html file within the following code blocks:
 
-##TAB TEXT
+## TAB TEXT
 
+- Very simple edit made to change to tab text. In index.html simply navigating to the <title></title> child under the <html> -> <head> parents
+  allows for editing this.
+
+**CODE BLOCK**
 <head>
 	<title>Callow & Co.</title>
 	<meta charset="utf-8" />
@@ -21,3 +27,97 @@ included in the various artist profile sections, the tab text were all very easy
 	<noscript><link rel="stylesheet" href="assets/css/noscript.css" /></noscript>
 </head>
  
+## INTRO SCREEN TEXT
+
+- Again, just very simple text editing from the placeholder text in index.html
+
+- For the actual content of the text, the white text between <p> and </p> is what I edited, however you will also notice that I have 
+  changed the colour of the text. This was achieved with style=”color: rgba(0, 0, 0, 0.717);” added to the content of <p>. In Visual 
+  Studio Code (VSCode), this adds a small square displaying the currently selected colour which can be clicked on to bring up an 
+  interactive colour scale that can be used to select colours with specificity, without the need to use trial and error editing the rgba 
+  content.
+
+- Notice the <strong> function, which makes the text encapsulated bold, also has a colour modification.
+
+**CODE BLOCK**
+<!-- Intro -->
+	<section id="intro" class="main style1 dark fullscreen">
+		<div class="content">
+			<header>
+				<h2 style="color: rgba(0, 0, 0, 0.717);">Callow & Co.</h2>
+			</header>
+			<p style="color: rgba(0, 0, 0, 0.717);">Welcome to <strong style="color: rgba(0, 0, 0, 0.717);">
+				Callow & Co,</strong> a family owned, Perth based photography business <br />
+			specializing in Portrait, Landscape and Wildlife photography.</p>
+			<footer>
+
+# Photography Gallery Website
+
+## Features
+
+- **Responsive 4-column gallery** (with gaps between thumbnails)
+- **Category filter buttons** (Wildlife, Landscapes, People, All)
+- **Vertically/horizontally centered button text**
+- **Easy to add more images** via JavaScript arrays
+- **Tab text (browser title) easily changed**
+- **Modern, minimal styling**
+
+---
+
+## Gallery Layout and Styling
+
+-- The following code ensures 4 columns on desktop, and 3, 2 or 1 on smaller screens
+-- Padding creates vertical space between thumbnails
+-- The container holding the thumbnails is centered and adapts to screen size
+
+```css
+#dynamic-gallery {
+    width: 100%;
+    max-width: 1600px;
+    margin: 0 auto;
+    box-sizing: border-box;
+}
+#dynamic-gallery article {
+    float: left;
+    width: 25%;            /* 4 columns */
+    box-sizing: border-box;
+    padding: 10px;         /* gap between thumbnails */
+}
+#dynamic-gallery:after {
+    content: "";
+    display: table;
+    clear: both;
+}
+
+/* Responsive breakpoints */
+@media screen and (max-width: 900px) {
+    #dynamic-gallery article { width: 33.33%; }
+}
+@media screen and (max-width: 600px) {
+    #dynamic-gallery article { width: 50%; }
+}
+@media screen and (max-width: 400px) {
+    #dynamic-gallery article { width: 100%; }
+}
+
+## CATEGORY FILTER BUTTONS
+
+'''css
+-- Centers button text horizontally
+-- Buttons have rounded corners and bold text
+
+#gallery-filters button {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 2.5em;
+    padding: 0.5em 1.2em;
+    margin: 0.2em;
+    background-color: #000000;
+    color: white;
+    border: none;
+    border-radius: 1em;
+    cursor: pointer;
+    font-weight: bold;
+    transition: background-color 0.2s;
+}
