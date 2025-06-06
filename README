@@ -102,10 +102,10 @@ included in the various artist profile sections, the tab text were all very easy
 
 ## CATEGORY FILTER BUTTONS
 
-'''css
 -- Centers button text horizontally
 -- Buttons have rounded corners and bold text
 
+```css
 #gallery-filters button {
     display: flex;
     align-items: center;
@@ -121,3 +121,14 @@ included in the various artist profile sections, the tab text were all very easy
     font-weight: bold;
     transition: background-color 0.2s;
 }
+
+## ADDING MORE IMAGES
+
+
+
+```JavaScript
+wildlife: [
+  { thumb: "images/thumbs/wildlife1.jpg", full: "images/fulls/wildlife1.jpg", title: "Buddy" },
+  // ...add more objects as needed...
+  { thumb: "images/thumbs/wildlife12.jpg", full: "images/fulls/wildlife12.jpg", title: "Simba" }
+],
