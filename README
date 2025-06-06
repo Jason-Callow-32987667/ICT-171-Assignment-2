@@ -1,10 +1,53 @@
 Author: Jason Callow, Student ID: 32987667
 Class: ICT171
-Assignment: Assignment 2
+Assignment: Assignment 2 - Cloud Project
 Website URL: https://jason-murdoch.online/
 
+#DNS AND SSL/TLS CERTIFICATION
 
+##DNS
 
+I used NameCheap.com to register my Domain. I used it because it's incredibly for the type of DNS I chose (.online) as well as being reliable. Pointing
+the domain name to the VM IP adress was incredibly easy, and was usually updated and working within minutes.
+
+The process was as easy as:
+1. Sign up for namecheap
+2. Purchase a domain (mine cost AUD$1.16 for a year)
+3. Navigate to the "Domain" tab in your account 
+4. Click your newly purchased domain's 'manage' button
+5. Select 'Advanced DNS' Tab
+6. Edit the IP of your domain by clicking it once, press enter to accept
+7. Wait a few minutes
+8. Done!
+
+##SSL/TLS CERTIFICATION
+
+For these certifications, I used CertBot by LetsEncrypt. It is vital to have these certificates in the modern internet landscape, as most 
+devices simply won't work without them. To get this up and running, The DNS needs to be properly set up as well as having Apache2 running 
+on your Ubuntu server device. The server also needs port 80 (HTTP), 443 (HTTPS) and port 22 (SSH) open. Opening these ports can be done in a 
+variety of ways depending on your server medium, but for me using an Ubuntu VM through Microsoft Azure, it was as simple as configuring the
+network security options in the Microsoft Azure dashboard.
+
+1. SSH into the server
+2. Install snapd with the commands:
+	- sudo apt update
+	- sudo apt install snapd
+3. Install CertBot with:
+	- sudo apt install --classic certbot
+4. Execute the following instruction to ensure the 'certbot' command can be run:
+	- sudo ln -s /snap/bin/certbot /usr/bin/certbot
+5. Get and Install certificates for Apache:
+	-sudo certbot --apache
+6. Test automatic renewalwith:
+	- sudo certbot renew --dry-run
+- This should show that certbot is installed in one of the following three directories:
+
+    /etc/crontab/
+    /etc/cron.*/*
+    systemctl list-timers
+
+8. Test that Certbot is working by navigating to your your website in the browser of your choice, you should see that your website
+   is working with HTTPS certifications!
 
 ---
 
