@@ -3,6 +3,11 @@ Class: ICT171
 Assignment: Assignment 2
 Website URL: https://jason-murdoch.online/
 
+
+
+
+---
+
 My website has been built using a template, Big picture by HTML5up. This frame work has been greatly expanded upon using various index.html, 
 main.css and main.js edits as well as changes to the aesthetics and feel of the website. I also made much more complicated edits, such as 
 adding a splash screen and completely reworking the gallery. I will walk through the changes made, working from the most basic to the most 
@@ -10,11 +15,10 @@ complicated.
 
 ---
 
-## Features
+#FEATURES
 
 - **Basic Text Editing
 - **Category filter buttons** (Wildlife, Landscapes, People, All)
-- **Vertically/horizontally centered button text**
 - **Easy to add more images** via JavaScript arrays
 - **Tab text (browser title) easily changed**
 - **Modern, minimal styling**
@@ -128,10 +132,46 @@ included in the various artist profile sections, the tab text were all very easy
 
 ---
 
+#CHANGING BACKGROUND IMAGES
+
+- Changing the background Image to suit the theme of my project is a fairly simple task. By adding relevant images to the 'assets' folder of my 
+  /html directory, I was able to use the following script to point to the images: 
+
+/* Intro */
+
+	#intro {
+		background: url("images/overlay.png"), url("../../images/Fleur_Bridge.jpg");
+		background-size: 256px 256px, cover;
+		background-attachment: fixed, fixed;
+		background-position: top left, bottom center;
+		background-repeat: repeat, no-repeat;
+	}
+
+/* One */
+
+	#one {
+		background: url("images/overlay.png"), url("../../images/land6.jpg");
+		background-size: 256px 256px, cover;
+		background-attachment: fixed, fixed;
+		background-position: top left, center center;
+	}
+
+/* Two */
+
+	#two {
+		background: url("images/overlay.png"), url("../../images/Giraffe.jpg");
+		background-size: 256px 256px, cover;
+		background-attachment: fixed, fixed;
+		background-position: top left, center center;
+	}
+
+---
+
 ## ADDING MORE IMAGES TO THE GALLERY
 
 - The template had no catagories set, so I had to add my own using the following syntax in the Javascript. This allowed me to easily
   expand and catagorise the images neatly
+- These files were added into the /thumb and /fulls folders in my /assets directory respectively
 
 ```JavaScript
 // STEP 1: Store image paths per category
@@ -229,7 +269,7 @@ function renderGallery(category) {
   of Javascript in a way that fits the website brief.
 - Upon loading up the website, this loads up a black screen over the whole page, upon which "Callow & Co." is typed sequentially
   before it lifts to reveal the page in its entireity.
-- To add this, it took additions to both CSS and JavaScript as follows:
+- To add this, it took additions to both CSS and JavaScript rowarsd the end of the scripts. Script as follows:
 
 ```CSS
 #splash-screen {
