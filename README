@@ -8,6 +8,17 @@ main.css and main.js edits as well as changes to the aesthetics and feel of the 
 adding a splash screen and completely reworking the gallery. I will walk through the changes made, working from the most basic to the most 
 complicated.
 
+## Features
+
+- **Basic Text Editing
+- **Category filter buttons** (Wildlife, Landscapes, People, All)
+- **Vertically/horizontally centered button text**
+- **Easy to add more images** via JavaScript arrays
+- **Tab text (browser title) easily changed**
+- **Modern, minimal styling**
+
+---
+
 #BASIC CHANGES 
 
 The first, simplest changes that I made to the website were to the overall aesthetics. The background images used on each page, the text 
@@ -18,7 +29,7 @@ included in the various artist profile sections, the tab text were all very easy
 - Very simple edit made to change to tab text. In index.html simply navigating to the <title></title> child under the <html> -> <head> parents
   allows for editing this.
 
-**CODE BLOCK**
+'''index.html
 <head>
 	<title>Callow & Co.</title>
 	<meta charset="utf-8" />
@@ -26,7 +37,9 @@ included in the various artist profile sections, the tab text were all very easy
 	<link rel="stylesheet" href="assets/css/main.css" />
 	<noscript><link rel="stylesheet" href="assets/css/noscript.css" /></noscript>
 </head>
- 
+
+---
+
 ## INTRO SCREEN TEXT
 
 - Again, just very simple text editing from the placeholder text in index.html
@@ -39,7 +52,7 @@ included in the various artist profile sections, the tab text were all very easy
 
 - Notice the <strong> function, which makes the text encapsulated bold, also has a colour modification.
 
-**CODE BLOCK**
+'''index.html
 <!-- Intro -->
 	<section id="intro" class="main style1 dark fullscreen">
 		<div class="content">
@@ -51,20 +64,9 @@ included in the various artist profile sections, the tab text were all very easy
 			specializing in Portrait, Landscape and Wildlife photography.</p>
 			<footer>
 
-# Photography Gallery Website
-
-## Features
-
-- **Responsive 4-column gallery** (with gaps between thumbnails)
-- **Category filter buttons** (Wildlife, Landscapes, People, All)
-- **Vertically/horizontally centered button text**
-- **Easy to add more images** via JavaScript arrays
-- **Tab text (browser title) easily changed**
-- **Modern, minimal styling**
-
 ---
 
-## Gallery Layout and Styling
+## GALLERY LAYOUT AND STYLING
 
 -- The following code ensures 4 columns on desktop, and 3, 2 or 1 on smaller screens
 -- Padding creates vertical space between thumbnails
@@ -121,6 +123,8 @@ included in the various artist profile sections, the tab text were all very easy
     font-weight: bold;
     transition: background-color 0.2s;
 }
+
+---
 
 ## ADDING MORE IMAGES TO THE GALLERY
 
@@ -214,6 +218,8 @@ function renderGallery(category) {
     `;
     container.appendChild(article);
   });
+
+---
 
 ## SPLASH SCREEN 
 
