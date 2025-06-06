@@ -122,13 +122,176 @@ included in the various artist profile sections, the tab text were all very easy
     transition: background-color 0.2s;
 }
 
-## ADDING MORE IMAGES
+## ADDING MORE IMAGES TO THE GALLERY
 
-
+- The template had no catagories set, so I had to add my own using the following syntax in the Javascript. This allowed me to easily
+  expand and catagorise the images neatly
 
 ```JavaScript
-wildlife: [
-  { thumb: "images/thumbs/wildlife1.jpg", full: "images/fulls/wildlife1.jpg", title: "Buddy" },
-  // ...add more objects as needed...
-  { thumb: "images/thumbs/wildlife12.jpg", full: "images/fulls/wildlife12.jpg", title: "Simba" }
-],
+// STEP 1: Store image paths per category
+const galleryImages = {
+  wildlife: [
+    { thumb: "images/thumbs/wildlife1.jpg", full: "images/fulls/wildlife1.jpg", title: "Buddy" },
+    { thumb: "images/thumbs/wildlife2.jpg", full: "images/fulls/wildlife2.jpg", title: "Fluffy" },
+	{ thumb: "images/thumbs/wildlife3.jpg", full: "images/fulls/wildlife3.jpg", title: "Whiskers" },
+	{ thumb: "images/thumbs/wildlife4.jpg", full: "images/fulls/wildlife4.jpg", title: "Shadow" },
+	{ thumb: "images/thumbs/wildlife5.jpg", full: "images/fulls/wildlife5.jpg", title: "Mittens" },
+	{ thumb: "images/thumbs/wildlife6.jpg", full: "images/fulls/wildlife6.jpg", title: "Socks" },
+	{ thumb: "images/thumbs/wildlife7.jpg", full: "images/fulls/wildlife7.jpg", title: "Paws" },
+	{ thumb: "images/thumbs/wildlife8.jpg", full: "images/fulls/wildlife8.jpg", title: "Coco" },
+	{ thumb: "images/thumbs/wildlife9.jpg", full: "images/fulls/wildlife9.jpg", title: "Bella" },
+	{ thumb: "images/thumbs/wildlife10.jpg", full: "images/fulls/wildlife10.jpg", title: "Leo" },
+	{ thumb: "images/thumbs/wildlife11.jpg", full: "images/fulls/wildlife11.jpg", title: "Max" },
+	{ thumb: "images/thumbs/wildlife12.jpg", full: "images/fulls/wildlife12.jpg", title: "Luna" }
+  ],
+  landscapes: [
+    { thumb: "images/thumbs/land1.jpg", full: "images/fulls/land1.jpg", title: "Sunset Ridge" },
+    { thumb: "images/thumbs/land2.jpg", full: "images/fulls/land2.jpg", title: "Forest Trail" },
+	{ thumb: "images/thumbs/land3.jpg", full: "images/fulls/land3.jpg", title: "Mountain Peak" },
+	{ thumb: "images/thumbs/land4.jpg", full: "images/fulls/land4.jpg", title: "Ocean View" },
+	{ thumb: "images/thumbs/land5.jpg", full: "images/fulls/land5.jpg", title: "Desert Dunes" },
+	{ thumb: "images/thumbs/land6.jpg", full: "images/fulls/land6.jpg", title: "River Bend" },
+	{ thumb: "images/thumbs/land7.jpg", full: "images/fulls/land7.jpg", title: "Rolling Hills" },
+	{ thumb: "images/thumbs/land8.jpg", full: "images/fulls/land8.jpg", title: "Autumn Forest" },
+	{ thumb: "images/thumbs/land9.jpg", full: "images/fulls/land9.jpg", title: "Snowy Mountains" },
+	{ thumb: "images/thumbs/land10.jpg", full: "images/fulls/land10.jpg", title: "Lakeside" },
+	{ thumb: "images/thumbs/land11.jpg", full: "images/fulls/land11.jpg", title: "City Skyline" },
+	{ thumb: "images/thumbs/land12.jpg", full: "images/fulls/land12.jpg", title: "Starry Night" }
+  ],
+  people: [
+  { thumb: "images/thumbs/people1.jpg", full: "images/fulls/people1.jpg", title: "Wedding Day" },
+  { thumb: "images/thumbs/people2.jpg", full: "images/fulls/people2.jpg", title: "Graduation" },
+  { thumb: "images/thumbs/people3.jpg", full: "images/fulls/people3.jpg", title: "Family Portrait" },
+  { thumb: "images/thumbs/people4.jpg", full: "images/fulls/people4.jpg", title: "Friends Gathering" },
+  { thumb: "images/thumbs/people5.jpg", full: "images/fulls/people5.jpg", title: "Birthday Celebration" },
+  { thumb: "images/thumbs/people6.jpg", full: "images/fulls/people6.jpg", title: "Candid Moment" },
+  { thumb: "images/thumbs/people7.jpg", full: "images/fulls/people7.jpg", title: "Outdoor Fun" },
+  { thumb: "images/thumbs/people8.jpg", full: "images/fulls/people8.jpg", title: "City Life" },
+  { thumb: "images/thumbs/people9.jpg", full: "images/fulls/people9.jpg", title: "Cultural Event" },
+  { thumb: "images/thumbs/people10.jpg", full: "images/fulls/people10.jpg", title: "Festival Vibes" },
+  { thumb: "images/thumbs/people11.jpg", full: "images/fulls/people11.jpg", title: "Sporting Event" },
+  { thumb: "images/thumbs/people12.jpg", full: "images/fulls/people12.jpg", title: "Concert Night" }
+]
+
+};
+
+- I have a function of my 'All' catagory which enables the user to click it as many times as they want, and they will get a random selection 
+  of any 12 images from across all catagories. The script is as follows:
+
+```Javascript
+// Add 'all' as a combined version
+galleryImages.all = [
+  ...galleryImages.wildlife,
+  ...galleryImages.landscapes,
+  ...galleryImages.people
+];
+
+// STEP 2: Function to render images into #dynamic-gallery
+function renderGallery(category) {
+  const container = document.getElementById('dynamic-gallery');
+  container.innerHTML = '';
+
+  let imagesToShow;
+
+  if (category === 'all') {
+    // Shuffle and select 6 random images
+    imagesToShow = [...galleryImages.all];
+    for (let i = imagesToShow.length - 1; i > 0; i--) {
+      const j = Math.floor(Math.random() * (i + 1));
+      [imagesToShow[i], imagesToShow[j]] = [imagesToShow[j], imagesToShow[i]];
+    }
+    imagesToShow = imagesToShow.slice(0, 12);
+  } else {
+    imagesToShow = galleryImages[category].slice(0, 12); // Only first 6 from category
+  }
+
+  imagesToShow.forEach(img => {
+    const article = document.createElement('article');
+    article.innerHTML = `
+      <a href="${img.full}" class="image fit">
+        <img src="${img.thumb}" title="${img.title}" alt="${img.title}">
+      </a>
+    `;
+    container.appendChild(article);
+  });
+
+## SPLASH SCREEN 
+
+- Adding a splash screen upon the website loading was another important addition for me to show both creativity and understanding
+  of Javascript in a way that fits the website brief.
+- Upon loading up the website, this loads up a black screen over the whole page, upon which "Callow & Co." is typed sequentially
+  before it lifts to reveal the page in its entireity.
+- To add this, it took additions to both CSS and JavaScript as follows:
+
+```CSS
+#splash-screen {
+  position: fixed;
+  top: 0; left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: black;
+  color: white;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 9999;
+  transition: opacity 1s ease;
+}
+
+#splash-screen.fade-out {
+  opacity: 0;
+  pointer-events: none;
+}
+
+#splash-title {
+  font-size: 5em; /* 4× original */
+  font-weight: bold;
+  letter-spacing: 0.1em;
+  text-align: center;
+}
+
+#splash-title span {
+  opacity: 0;
+  display: inline-block;
+  animation: fadeInLetter 0.5s forwards;
+}
+
+/* Each letter fades in at an offset (spaced over 4s total) */
+#splash-title span:nth-child(1)  { animation-delay: 0.0s; }
+#splash-title span:nth-child(2)  { animation-delay: 0.4s; }
+#splash-title span:nth-child(3)  { animation-delay: 0.8s; }
+#splash-title span:nth-child(4)  { animation-delay: 1.2s; }
+#splash-title span:nth-child(5)  { animation-delay: 1.6s; }
+#splash-title span:nth-child(6)  { animation-delay: 2.0s; }
+#splash-title span:nth-child(7)  { animation-delay: 2.01s; }
+#splash-title span:nth-child(8)  { animation-delay: 2.4s; }
+#splash-title span:nth-child(9)  { animation-delay: 2.41s; }
+#splash-title span:nth-child(10) { animation-delay: 2.8s; }
+#splash-title span:nth-child(11) { animation-delay: 3.2s; }
+#splash-title span:nth-child(12) { animation-delay: 3.6s; }
+
+@keyframes fadeInLetter {
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+```index.html
+ //Splash Screen -->
+<div id="splash-screen">
+  <h1 id="splash-title">
+    <span>C</span><span>a</span><span>l</span><span>l</span><span>o</span><span>w</span>
+    <span> </span><span>&</span><span> </span><span>C</span><span>o</span><span>.</span>
+  </h1>
+</div>
+
+```Javascript
+document.addEventListener('DOMContentLoaded', function () {
+  const splash = document.getElementById('splash-screen');
+
+// Splash Screen timout timer
+  setTimeout(() => {
+    splash.classList.add('fade-out');
+  }, 4000);
+});
