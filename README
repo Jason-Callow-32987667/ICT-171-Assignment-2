@@ -25,7 +25,7 @@ The process was as easy as:
 For these certifications, I used CertBot by LetsEncrypt. It is vital to have these certificates in the modern internet landscape, as most 
 devices simply won't work without them. To get this up and running, The DNS needs to be properly set up as well as having Apache2 running 
 on your Ubuntu server device. The server also needs port 80 (HTTP), 443 (HTTPS) and port 22 (SSH) open. Opening these ports can be done in a 
-variety of ways depending on your server medium, but for me using an Ubuntu VM through Microsoft Azure, it was as simple as configuring the
+variety of ways depending on your server environment, but for me using an Ubuntu VM through Microsoft Azure, it was as simple as configuring the
 network security options in the Microsoft Azure dashboard.
 
 1. SSH into the server
@@ -37,7 +37,7 @@ network security options in the Microsoft Azure dashboard.
 4. Execute the following instruction to ensure the 'certbot' command can be run:
 	- sudo ln -s /snap/bin/certbot /usr/bin/certbot
 5. Get and Install certificates for Apache:
-	-sudo certbot --apache
+	- sudo certbot --apache
 6. Test automatic renewalwith:
 	- sudo certbot renew --dry-run
 - This should show that certbot is installed in one of the following three directories:
@@ -54,19 +54,21 @@ network security options in the Microsoft Azure dashboard.
 #WEBSITE DESIGN EXPLAINER
 
 My website has been built using a template, Big picture by HTML5up. This frame work has been greatly expanded upon using various index.html, 
-main.css and main.js edits as well as changes to the aesthetics and feel of the website. I also made much more complicated edits, such as 
-adding a splash screen and completely reworking the gallery. I will walk through the changes made, working from the most basic to the most 
-complicated.
+main.css and main.js edits as well as changes to the aesthetics and feel of the website. For comparison the origional index.html, main.css 
+and main.js have been included in this Git project for independant comparison. I have also made much more complicated edits, such as 
+adding a splash screen and completely reworking how the user interacts with the gallery. I will walk through the changes made, working from 
+the most basic to the most complicated.
 
 ---
 
 #FEATURES
 
-- **Basic Text Editing
+- **Basic Text Editing**
 - **Category filter buttons** (Wildlife, Landscapes, People, All)
 - **Easy to add more images** via JavaScript arrays
-- **Tab text (browser title) easily changed**
+- **Tab text (browser title)** easily changed**
 - **Modern, minimal styling**
+- **Splash Screen**
 
 ---
 
@@ -177,11 +179,34 @@ included in the various artist profile sections, the tab text were all very easy
 
 ---
 
+#GALLLERY THUMBNAIL APPEARANCE
+
+- The thumbnails in the gallery have a 'wipe' animation to appear and dissapear as the user scrolls , and this is controlled by the following
+  main.css script under the .gallery parent
+
+```css
+.gallery article {
+			-moz-transition: -moz-transform 1s ease, opacity 1s ease;
+			-webkit-transition: -webkit-transform 1s ease, opacity 1s ease;
+			-ms-transition: -ms-transform 1s ease, opacity 1s ease;
+			transition: transform 1s ease, opacity 1s ease;
+			-moz-transform: translateX(0);
+			-webkit-transform: translateX(0);
+			-ms-transform: translateX(0);
+			transform: translateX(0);
+			width: 50%;
+			position: relative;
+			opacity: 1.0;
+		}
+
+---
+
 #CHANGING BACKGROUND IMAGES
 
 - Changing the background Image to suit the theme of my project is a fairly simple task. By adding relevant images to the 'assets' folder of my 
   /html directory, I was able to use the following script to point to the images: 
 
+```css
 /* Intro */
 
 	#intro {
