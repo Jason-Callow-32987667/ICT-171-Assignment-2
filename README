@@ -53,11 +53,11 @@ network security options in the Microsoft Azure dashboard.
 
 #WEBSITE DESIGN EXPLAINER
 
-My website has been built using a template, Big picture by HTML5up. This frame work has been greatly expanded upon using various index.html, 
-main.css and main.js edits as well as changes to the aesthetics and feel of the website. For comparison the origional index.html, main.css 
-and main.js have been included in this Git project for independant comparison. I have also made much more complicated edits, such as 
-adding a splash screen and completely reworking how the user interacts with the gallery. I will walk through the changes made, working from 
-the most basic to the most complicated.
+My website has been built using a template, Big picture by HTML5up (https://html5up.net/big-picture). This frame work has been greatly expanded 
+upon using various index.html, main.css and main.js edits as well as changes to the aesthetics and feel of the website. For comparison the 
+origional index.html, main.css and main.js have been included in this Git project for independant comparison. I have also made much more 
+complicated edits, such as adding a splash screen and completely reworking how the user interacts with the gallery. I will walk through the 
+changes made, working from the most basic to the most complicated.
 
 ---
 
